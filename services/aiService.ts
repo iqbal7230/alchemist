@@ -1,5 +1,3 @@
-// aiService.ts
-
 interface GeminiResponse {
   candidates: Array<{
     content: {
@@ -43,16 +41,16 @@ class AIService {
   // AI-enabled header mapping
   async mapHeaders(headers: string[], expectedStructure: any): Promise<Record<string, string | null>> {
     const prompt = `
-You are an AI data parser. Map the following CSV headers to the expected data structure.
+              You are an AI data parser. Map the following CSV headers to the expected data structure.
 
-CSV Headers: [${headers.join(', ')}]
+              CSV Headers: [${headers.join(', ')}]
 
-Expected Structure: ${JSON.stringify(expectedStructure, null, 2)}
+              Expected Structure: ${JSON.stringify(expectedStructure, null, 2)}
 
-Return ONLY a JSON object mapping each CSV header to the correct expected field. 
-If no match is found, map to null.
+              Return ONLY a JSON object mapping each CSV header to the correct expected field. 
+              If no match is found, map to null.
 
-Example: {"client_id": "ClientID", "name": "ClientName", "priority": "PriorityLevel"}
+              Example: {"client_id": "ClientID", "name": "ClientName", "priority": "PriorityLevel"}
     `;
 
     const result = await this.callGemini(prompt);
@@ -66,7 +64,7 @@ Example: {"client_id": "ClientID", "name": "ClientName", "priority": "PriorityLe
   // Advanced AI validations
   async validateData(data: any[], entityType: string): Promise<any[]> {
     const prompt = `
-Analyze this ${entityType} data and identify validation issues beyond basic checks.
+      Analyze this ${entityType} data and identify validation issues beyond basic checks.
 Consider business logic, data consistency, and realistic constraints.
 
 Data sample: ${JSON.stringify(data.slice(0, 5), null, 2)}

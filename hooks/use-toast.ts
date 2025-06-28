@@ -89,7 +89,7 @@ const toast: ToastFunction = Object.assign(
       } & ToastOptions
     ) => sonnerToast.promise(promise, options),
     custom: (jsx: React.ReactNode, options?: ToastOptions) =>
-      sonnerToast.custom(jsx, options),
+      sonnerToast.custom((_id: string | number) => jsx as React.ReactElement, options),
     dismiss: (id?: string | number) => sonnerToast.dismiss(id),
   }
 )
