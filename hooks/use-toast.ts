@@ -13,6 +13,11 @@ type LegacyToastProps = {
   variant?: "default" | "destructive" | "success" | "warning" | "info"
 } & ToastOptions
 
+type SonnerPromiseReturn<T = any> =
+  | (string & { unwrap: () => Promise<T> })
+  | (number & { unwrap: () => Promise<T> })
+  | { unwrap: () => Promise<T> };
+
 type ToastFunction = {
   (message: string, options?: ToastOptions): string | number
   (props: LegacyToastProps): string | number
@@ -28,7 +33,7 @@ type ToastFunction = {
       success?: string | ((data: T) => string)
       error?: string | ((error: any) => string)
     } & ToastOptions
-  ) => string | number
+  ) => SonnerPromiseReturn<T>
   custom: (jsx: React.ReactNode, options?: ToastOptions) => string | number
   dismiss: (id?: string | number) => void
 }
