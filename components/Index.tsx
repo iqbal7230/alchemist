@@ -8,7 +8,7 @@ import ValidationPanel from '@/components/ValidationPanel';
 import RuleBuilder from '@/components/RuleBuilder';
 import PrioritySettings from '@/components/PrioritySettings';
 import ExportPanel from '@/components/ExportPanel';
-import AIDataParser from '@/components/AIDataParser';
+import DataInsights from '@/components/DataInsights';
 import { Upload, Database, Shield, Settings, Download,  Brain } from 'lucide-react';
 
 const Index = () => {
@@ -24,7 +24,7 @@ const Index = () => {
       <div className="container mx-auto p-6">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
-            🚀 Data Alchemist
+             Data Alchemist
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Transform your spreadsheet chaos into organized, validated data with AI-powered intelligence
@@ -37,9 +37,9 @@ const Index = () => {
               <Upload className="w-4 h-4" />
               Data Ingestion
             </TabsTrigger>
-            <TabsTrigger value="ai" className="flex items-center gap-2">
+            <TabsTrigger value="insights" className="flex items-center gap-2">
               <Brain className="w-4 h-4" />
-              AI Features
+              Data Chat
             </TabsTrigger>
             <TabsTrigger value="data" className="flex items-center gap-2">
               <Database className="w-4 h-4" />
@@ -78,16 +78,20 @@ const Index = () => {
               </CardContent>
             </Card>
           </TabsContent>
-          <TabsContent value="ai">
+           <TabsContent value="insights">
             <Card className="shadow-lg border-0 bg-white/70 backdrop-blur-sm">
               <CardHeader>
-                <CardTitle className="text-2xl">AI-Powered Features</CardTitle>
+                <CardTitle className="text-2xl">Data Conversations</CardTitle>
                 <CardDescription>
-                  Enable intelligent data parsing, natural language search, and automated corrections
+                  Chat with your data using natural language to get insights, find patterns, and ask questions
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <AIDataParser/>
+                <DataInsights 
+                  clientsData={clientsData}
+                  workersData={workersData}
+                  tasksData={tasksData}
+                />
               </CardContent>
             </Card>
           </TabsContent>

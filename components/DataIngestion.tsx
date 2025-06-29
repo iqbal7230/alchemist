@@ -61,6 +61,7 @@ const DataIngestion: React.FC<DataIngestionProps> = ({ onDataLoad }) => {
         toast({
           title: "File uploaded successfully",
           description: `${normalizedData.length} ${type} records loaded`,
+          variant: "success",
         });
       } catch (error) {
         setUploadStates(prev => ({ ...prev, [type]: 'error' }));
