@@ -30,9 +30,8 @@ export default function Home() {
             Transform your spreadsheet chaos into organized, validated data with AI-powered intelligence
           </p>
         </div>
-
-        <Tabs defaultValue="ingestion" className="w-full">
-          <TabsList className="grid w-full grid-cols-6 mb-8">
+        <Tabs defaultValue="ingestion" className="w-full ">
+          <TabsList className="flex flex-wrap  w-full gap-2 mb-8">
             <TabsTrigger value="ingestion" className="flex items-center gap-2">
               <Upload className="w-4 h-4" />
               Data Ingestion

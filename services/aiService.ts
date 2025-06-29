@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-dotenv.config(); // Ensure env vars are loaded
+dotenv.config(); 
 
 interface GeminiResponse {
   candidates: Array<{
@@ -17,12 +17,12 @@ class AIService {
   constructor() {
     this.apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || '';
     if (!this.apiKey) {
-      throw new Error('❌ Gemini API key is not set. Please define GEMINI_API_KEY in your .env file.');
+      throw new Error('Gemini API key is not set');
     }
   }
 
   private async callGemini(prompt: string): Promise<string> {
-    console.log('📨 Making Gemini API call with prompt:', prompt.substring(0, 100) + '...');
+    console.log('Making Gemini API call with prompt:', prompt.substring(0, 100) + '...');
 
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${this.apiKey}`,
@@ -45,19 +45,19 @@ class AIService {
       }
     );
 
-    console.log('📬 Gemini API response status:', response.status);
+    console.log('Gemini API response status:', response.status);
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('❌ Gemini API error response:', errorText);
+      console.error('Gemini API error response:', errorText);
       throw new Error(`Gemini API error: ${response.status} - ${errorText}`);
     }
 
     const data: GeminiResponse = await response.json();
-    console.log('✅ Gemini API response data:', data);
+    console.log('Gemini API response data:', data);
 
     const result = data.candidates[0]?.content?.parts[0]?.text || '';
-    console.log('🧠 Extracted result:', result);
+    console.log('Extracted result:', result);
 
     return result;
   }
