@@ -116,10 +116,10 @@ Format your response as JSON:
     try {
       const result = await this.callGemini(prompt);
       const parsed = JSON.parse(result.replace(/```json|```/g, '').trim());
-      console.log('✅ Data insights result:', parsed);
+      console.log('Data insights result:', parsed);
       return parsed;
     } catch (error) {
-      console.error('❌ Error in getDataInsights:', error);
+      console.error('Error in getDataInsights:', error);
       return {
         answer:
           "I'm having trouble analyzing your data right now. Please try rephrasing your question or check your API connection.",
